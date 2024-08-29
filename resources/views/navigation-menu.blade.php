@@ -1,9 +1,14 @@
 @php
     $links = [
         [
-            'name'=>'Inscripciones',
+            'name'=>'Home',
             'route'=> route('inscripcion.inscripcion.index'),
-            'active'=> request()->routeIs('inscripciones.inscripciones.index'),
+            'active'=> request()->routeIs('inscripcion.inscripcion.index'),
+        ],
+        [
+            'name' =>'Listado',
+            'route'=>'#',
+            'active'=> true,
         ],
 ];
 @endphp
@@ -70,8 +75,21 @@
                                     {{ __('Profile') }}
                                 </x-dropdown-link>
 
-                            
+                                @can('Leer registro')
+                                    
+                               
+                                <x-dropdown-link href="{{ route('inscripcion.inscripcion.index') }}">
+                                    Instructor
+                                </x-dropdown-link>
+                                @endcan
+                                
+                                <x-dropdown-link href="{{ route('admin.dashboard') }}">
+                                    Administrador
+                                </x-dropdown-link>
+                                
 
+                                
+                                
                                 <div class="border-t border-gray-200"></div>
 
                         <!-- Authentication -->
@@ -106,7 +124,20 @@
 
                                 <x-dropdown-link href="{{ route('register') }}">
                                     Registrarse
-                                </x-dropdown-link>              
+                                </x-dropdown-link> 
+                                
+                            
+                                @can('Leer registro')
+                                <x-dropdown-link href="{{ route('inscripcion.index') }}">
+                                    Instructor
+                                </x-dropdown-link>  
+                                @endcan
+                                @can('Ver dashboard')
+                            <x-dropdown-link href="{{ route('admin.home') }}">
+                               Administrador
+                            </x-dropdown-link>  
+                            @endcan
+                         
                         </x-slot>
                     </x-dropdown>
                         
@@ -176,8 +207,7 @@
                 <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
-
-               
+                       
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}" x-data>

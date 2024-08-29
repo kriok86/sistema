@@ -183,11 +183,22 @@
                        </x-select>
                     </div>
                     
-                   
+                    
                 </div>
-               
+                <div class="flex">
+                 
+                </div>
+                <div class="flex justify-center">
+                    
+                </div>
                 <div class="flex justify-end">
-                    <x-button>
+                    <x-button class="rigth mr-4 bg-red-700 ">
+                        VERIFICAR INSCRIPCION
+                    </x-button>
+                    <x-button class="justify-center mr-4 bg-yellow-400">
+                        IMPRIMIR LA INSCRIPCION
+                    </x-button >
+                    <x-button class="bg-green-600">
                         Cargar la nueva inscripcion
                     </x-button>
                 </div>

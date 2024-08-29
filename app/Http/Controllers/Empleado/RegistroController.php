@@ -49,8 +49,14 @@ class RegistroController extends Controller
         $trabajo = Trabajo::all();
         $ubicacion = Ubicacion::all();
         $punto = Punto::all(); 
+
+        session()->flash('swal',[
+            'icon'=>'success',
+            'title'=> '¡Bien Hecho!',
+            'text'=>'La inscripcion se creo correctamente'
+        ]);
         
-        return view('inscripciones.inscripcion.create', compact('antiguedad', 'vivienda', 'residencia', 'tenencia','personas', 'estudios', 'obra', 'informe', 'ingreso', 'familia', 'trabajo','ubicacion', 'punto'));
+        return view('inscripciones.inscripcion.create', compact('antiguedad', 'vivienda', 'residencia', 'tenencia','personas', 'estudios', 'obra', 'informe', 'ingreso', 'familia', 'trabajo','ubicacion','punto'));
     }
 
     /**
@@ -96,7 +102,8 @@ class RegistroController extends Controller
      */
     public function edit(Registro $registro)
     {
-        //
+        $solicitud= Antiguedad::pluck('name', 'id');
+        return view('inscripciones.inscripcion.edit', compact('registro', 'solicitud'));
     }
 
     /**
@@ -104,7 +111,11 @@ class RegistroController extends Controller
      */
     public function update(Request $request, Registro $registro)
     {
-        //
+        $request->validate([
+            'name'=> ['required,'. $registro->id],
+            
+        ]);
+        $registro->update($request->all());
     }
 
     /**

@@ -2,7 +2,7 @@
     $links = [
       [
          'name'=>'Dashboard',
-         'route'=>route('admin.dashboard'),
+         'url'=>route('home'),
          'active'=> request()->routeIs('admin.dashboard'),
          'icon'=>'fa-solid fa-gauge'
          
@@ -12,26 +12,35 @@
       ],
       [
          'name'=>'Usuarios',
-         'route'=>'#',
-         'active'=> false,
+         'url'=> route('admin.users.index'),
+         'active'=> request()->routeIs('admin.users.*'),
          'icon'=>'fa-solid fa-users'
          
       ],
       [
          
          'name'=>'Roles',
-         'route'=>'',
-         'active'=> false,
-         'icon'=>'fa-solid fa-address-book'
+         'url'=> route('admin.roles.index'),
+         'active'=> request()->routeIs('admin.role.*'),
+         'icon'=>'fa-solid fa-address-book',
          
 
       ],
       [
          
          'name'=>'Lista de Inscripctos',
-         'route'=>'',
+         'url'=>'',
          'active'=> false,
          'icon'=>'fa-solid fa-clipboard-list'
+         
+
+      ],
+      [
+         
+         'name'=>'Permisos',
+         'url'=> route('admin.permissions.index'),
+         'active'=> request()->routeIs('admin.permission.*'),
+         'icon'=>'fa-solid fa-key',
          
 
       ],
@@ -57,7 +66,7 @@
 
              </div>
             @else
-               <a href="{{$link['route']}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{$link['active'] ? 'bg-gray-100': ''}}">
+               <a href="{{$link['url']}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{$link['active'] ? 'bg-gray-100': ''}}">
                      <span class="inline-flex w-6 h-6 justify-center items-center">
                        <i class="{{$link['icon']}} text-gray-500"></i>
                      </span>

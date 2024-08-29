@@ -1,4 +1,4 @@
-<x-inscripciones-layout>
+<x-inscripciones-layout >
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Empadronamiento de registros 
@@ -15,6 +15,7 @@
         
 
         <div class="relative overflow-x-auto mt-4">
+            
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     
@@ -31,15 +32,19 @@
                         <th scope="col" class="px-6 py-3">
                             Estado del registro
                     </th>
-                        <th scope="col" class="px-6 py-3">
+                        {{--<th scope="col" class="px-6 py-3">
                                 Puntos Obtenidos
                         </th>
+                        <th scope="col" class="px-6 py-3">
+                           Edicion
+                    </th>--}}
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($registro as $registro)
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
-                       
+                    <a href="">
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
+                        
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{$registro->nombre}}
                                 {{$registro->apellido}}
@@ -72,18 +77,21 @@
                                 @endswitch
                                 
                             </td>
-                            <td class="px-6 py-4">
+                            {{--<td class="px-6 py-4">
                             {{$registro->punto_id}}
                             </td>
                         
-                        
-                    </tr>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <a href="{{route('inscripcion.inscripcion.edit',$registro)}}" class="text-gray-900 whitespace-no-wrap">Editar</a>
+                            </td>--}}
+                        </tr>
+                    </a>
                     @endforeach
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              
-                    </tr>
+                    
+                    
                 </tbody>
             </table>
+            
         </div>
 
 

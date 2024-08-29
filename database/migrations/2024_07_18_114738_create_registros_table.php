@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('apellido');
-            $table->float('dni', precision:8);
-            $table->float('telefono', precision:10);
+            $table->integer('dni');
+            $table->bigInteger('telefono');
             $table->integer('status')->default(1);
 
             $table->foreignId('user_id');
